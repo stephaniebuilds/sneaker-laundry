@@ -121,24 +121,42 @@
 </head>
 <body class="bg-[#0a1128] text-white font-body-md text-body-md overflow-x-hidden">
 
-<header class="fixed top-0 w-full z-50 bg-zinc-950/10 backdrop-blur-xl border-b border-white/10 shadow-sm transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 h-28 grid grid-cols-[1fr_auto_1fr] items-center gap-x-12">
+<header class="fixed top-0 w-full z-50 bg-zinc-950/10 backdrop-blur-xl border-b border-white/10 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 h-28 flex items-center justify-between">
     
-    <a href="#" class="flex items-center justify-start h-full group">
-        <img src="./assets/Logo StepClean - Para fundo escuro.png" class="h-14 md:h-20 w-auto object-contain">
-    </a>
+        <a href="#" class="flex items-center h-full">
+            <img src="./assets/Logo StepClean - Para fundo escuro.png" class="h-14 md:h-20 w-auto object-contain">
+        </a>
 
-    <nav class="flex items-center justify-center gap-10 font-bold whitespace-nowrap">
-        <a href="#inicio" class="text-white text-2xl hover:text-[#00d2ff] transition-colors">Início</a>
-        <a href="#comofunciona" class="text-white text-2xl hover:text-[#00d2ff] transition-colors">Como funciona</a>
-        <a href="#contato" class="contact-trigger text-white text-2xl hover:text-[#00d2ff] transition-colors cursor-pointer">Contato</a>
-    </nav>
+        <div class="flex items-center gap-6">
+            <nav class="hidden md:flex items-center gap-6 font-bold">
+                <a href="#inicio" class="text-white text-lg hover:text-[#00d2ff]">Início</a>
+                <a href="#comofunciona" class="text-white text-lg hover:text-[#00d2ff]">Como funciona</a>
+                <a href="#" id="btnContatoDesktop" class="text-white text-lg hover:text-[#00d2ff]">Contato</a>
+            </nav>
 
-    <div class="flex justify-end">
-        <a href="https://wa.me/5512988881170" class="px-6 py-3 font-bold text-white transition-all bg-[#00d2ff] rounded-full hover:bg-white hover:text-[#0056d2] shadow-[0_0_15px_rgba(0,210,255,0.4)] hover:scale-105">Agendar minha limpeza</a>
+            <a href="https://wa.me/5512988881170" class="hidden md:block px-6 py-3 font-bold text-white bg-[#00d2ff] rounded-full hover:bg-white hover:text-[#0056d2] transition-all">
+                Agendar minha limpeza
+            </a>
+            
+            <button id="hamburger" class="md:hidden text-white flex items-center">
+                <span class="material-symbols-outlined text-4xl">menu</span>
+            </button>
+        </div>
     </div>
-</div>
 </header>
+
+<div id="mobileMenu" class="fixed inset-0 z-[9999] bg-zinc-950 translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center gap-8">
+    <button id="closeMenu" class="absolute top-8 right-8 text-white"><span class="material-symbols-outlined text-4xl">close</span></button>
+    <a href="#inicio" onclick="toggleMenu()" class="text-white text-2xl font-bold">Início</a>
+    <a href="#comofunciona" onclick="toggleMenu()" class="text-white text-2xl font-bold">Como funciona</a>
+    <a href="#" 
+   onclick="toggleMenu(); toggleModal(document.getElementById('contactModal'), true); return false;" 
+   class="text-white text-2xl font-bold">
+   Contato
+</a>
+    <a href="https://wa.me/5512988881170" class="px-8 py-4 font-bold text-white bg-[#00d2ff] rounded-full">Agendar minha limpeza</a>
+</div>
 
 <div id="contactModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-black/80 backdrop-blur-xl p-4">
     <div class="relative w-full max-w-md bg-zinc-900 border border-white/10 rounded-3xl p-8 text-center space-y-6">
@@ -303,7 +321,19 @@
             
             <div class="absolute inset-0 bg-primary/10 puddle-accent filter blur-3xl opacity-30 animate-pulse"></div>
             
-            <div id="threejs-container-ANIMATION_5" class="w-full h-full relative z-10" style="display:block;">
+            <div id="threejs-container-ANIMATION_5" class="w-full h-full relative z-10" style="display:block;"></div>
+
+            <div class="absolute -top-16 md:top-[25%] left-4 md:left-0 z-[100] glass-effect p-4 rounded-xl flex items-center gap-3 animate-bounce shadow-xl border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                <span class="material-symbols-outlined text-[#0040a1]" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+                <span class="text-white text-[14px] font-bold">LIMPEZA PROFUNDA</span>
+            </div>
+
+            <div class="absolute -bottom-16 md:bottom-[25%] right-4 md:right-0 z-[100] glass-effect p-4 rounded-xl flex items-center gap-3 animate-bounce shadow-xl border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                <span class="material-symbols-outlined text-[#0056d2]" style="font-variation-settings: 'FILL' 1;">clean_hands</span>
+                <span class="text-white font-bold">CUIDADO PROFISSIONAL</span>
+            </div>
+        </div>
+    </section>
             <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
 <script>
 (function() {
@@ -401,18 +431,7 @@
   animate();
 })();
 </script>
-            </div>
 
-            <div class="absolute top-1/4 left-4 md:left-0 glass-effect p-4 rounded-xl flex items-center gap-3 animate-bounce shadow-xl" style="animation-duration: 3s">
-                <span class="material-symbols-outlined text-[#0040a1]" style="font-variation-settings: 'FILL' 1;">water_drop</span>
-                <span class="text-label-bold font-label-bold text-white text-[14px] leading-[20px]">LIMPEZA PROFUNDA</span>
-            </div>
-            <div class="absolute bottom-1/4 right-4 md:right-0 glass-effect p-4 rounded-xl flex items-center gap-3 animate-bounce shadow-xl" style="animation-duration: 4s">
-                <span class="material-symbols-outlined text-[#0056d2]" style="font-variation-settings: 'FILL' 1;">clean_hands</span>
-                <span class="text-label-bold font-label-bold text-white ">CUIDADO PROFISSIONAL</span>
-            </div>
-        </div>
-    </section>
 
 <section id="comofunciona" class="min-h-screen w-full relative flex items-center justify-center px-margin-mobile md:px-margin-desktop py-20 text-center">
     <div class="max-w-2xl mx-auto space-y-6 animate-fade-in relative z-10">
@@ -649,39 +668,43 @@
 </main>
 
 <script>
+    // Função global para abrir/fechar modais
+    const toggleModal = (modal, show) => {
+        if (!modal) return; // Segurança caso o modal não exista
+        if (show) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        } else {
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
-        
         const contactModal = document.getElementById('contactModal');
         const photoModal = document.getElementById('photoModal');
-        const contactLink = document.querySelector('a[href="#contato"]');
-        const openModalBtn = document.getElementById('openModalBtn');
 
-        const toggleModal = (modal, show) => {
-            if (show) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
-            } else {
-                modal.classList.remove('flex');
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
-        };
+        // Evento para o link de contato no Desktop (usando o ID)
+        document.getElementById('btnContatoDesktop')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleModal(contactModal, true);
+        });
 
-        if (contactLink) {
-            contactLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                toggleModal(contactModal, true);
-            });
-        }
-
-        if (openModalBtn) {
-            openModalBtn.addEventListener('click', () => toggleModal(photoModal, true));
-        }
-
+        // Outros eventos
+        document.getElementById('openModalBtn')?.addEventListener('click', () => toggleModal(photoModal, true));
         document.getElementById('closeContactModal')?.addEventListener('click', () => toggleModal(contactModal, false));
         document.getElementById('closeModalBtn')?.addEventListener('click', () => toggleModal(photoModal, false));
     });
+
+    // Lógica do Menu Mobile
+    const menu = document.getElementById('mobileMenu');
+    function toggleMenu() {
+        menu.classList.toggle('translate-x-full');
+    }
+    document.getElementById('hamburger').addEventListener('click', toggleMenu);
+    document.getElementById('closeMenu').addEventListener('click', toggleMenu);
 </script>
 </body>
 </html>
