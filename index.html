@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>StepClean | Limpeza profunda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f3f3f6",
+                        "inverse-surface": "#2f3133",
+                        "inverse-primary": "#b2c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#424654",
+                        "on-tertiary-fixed": "#141d21",
+                        "on-surface": "#1a1c1e",
+                        "on-secondary-container": "#006576",
+                        "tertiary": "#3f484d",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "secondary-fixed": "#abedff",
+                        "on-background": "#1a1c1e",
+                        "primary-fixed": "#dae2ff",
+                        "on-tertiary-container": "#d1dae0",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#75e3fe",
+                        "background": "#0a1128",
+                        "primary-container": "#0056d2",
+                        "surface-container-high": "#e8e8ea",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "surface-tint": "#0056d2",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#001f26",
+                        "on-tertiary-fixed-variant": "#3f484d",
+                        "surface-bright": "#f9f9fc",
+                        "surface-container": "#eeeef0",
+                        "on-primary-fixed": "#001847",
+                        "secondary-fixed-dim": "#66d5f0",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c3c6d6",
+                        "surface-container-highest": "#e2e2e5",
+                        "tertiary-container": "#576065",
+                        "on-error": "#ffffff",
+                        "outline": "#737785",
+                        "inverse-on-surface": "#f0f0f3",
+                        "secondary": "#00687a",
+                        "primary": "#0040a1",
+                        "surface-dim": "#dadadc",
+                        "tertiary-fixed": "#dbe4ea",
+                        "surface": "#f9f9fc",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "tertiary-fixed-dim": "#bfc8ce",
+                        "surface-variant": "#e2e2e5",
+                        "on-primary-container": "#ccd8ff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "max-width": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "label-bold": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-sm": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-hydro {
+            background: linear-gradient(135deg, #0040a1 0%, #00687a 100%);
+            box-shadow: 0 4px 15px rgba(0, 64, 161, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-hydro:hover {
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3), 0 6px 20px rgba(0, 64, 161, 0.4);
+            transform: translateY(-2px);
+        }
+        .puddle-accent {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-[#0a1128] text-white font-body-md text-body-md overflow-x-hidden">
+
+<header class="fixed top-0 w-full z-50 bg-zinc-950/10 backdrop-blur-xl border-b border-white/10 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 h-28 grid grid-cols-[1fr_auto_1fr] items-center gap-x-12">
+    
+    <a href="#" class="flex items-center justify-start h-full group">
+        <img src="./assets/Logo StepClean - Para fundo escuro.png" class="h-14 md:h-20 w-auto object-contain">
+    </a>
+
+    <nav class="flex items-center justify-center gap-10 font-bold whitespace-nowrap">
+        <a href="#inicio" class="text-white text-2xl hover:text-[#00d2ff] transition-colors">Início</a>
+        <a href="#comofunciona" class="text-white text-2xl hover:text-[#00d2ff] transition-colors">Como funciona</a>
+        <a href="#contato" class="contact-trigger text-white text-2xl hover:text-[#00d2ff] transition-colors cursor-pointer">Contato</a>
+    </nav>
+
+    <div class="flex justify-end">
+        <a href="https://wa.me/5512988881170" class="px-6 py-3 font-bold text-white transition-all bg-[#00d2ff] rounded-full hover:bg-white hover:text-[#0056d2] shadow-[0_0_15px_rgba(0,210,255,0.4)] hover:scale-105">Agendar minha limpeza</a>
+    </div>
+</div>
+</header>
+
+<div id="contactModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-black/80 backdrop-blur-xl p-4">
+    <div class="relative w-full max-w-md bg-zinc-900 border border-white/10 rounded-3xl p-8 text-center space-y-6">
+        <button id="closeContactModal" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        
+        <div>
+            <h2 class="text-2xl font-bold text-white mb-2">Vamos conversar?</h2>
+            <p class="text-slate-400 text-sm">Escolha como prefere falar com a gente:</p>
+        </div>
+
+        <div class="space-y-3">
+            <a href="mailto:contato@stepclean.com" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-[#0056d2]/20 border border-white/5 transition-all">
+                <span class="material-symbols-outlined text-[#00d2ff]">mail</span>
+                <span class="text-white">contato@stepclean.com</span>
+            </a>
+            
+            <a href="https://instagram.com/stepcleantaubate" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-[#ff007f]/20 border border-white/5 transition-all">
+                <svg class="w-6 h-6 text-[#00d2ff]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2c-2.717 0-3.056.01-4.122.06a8.55 8.55 0 00-2.825.545 4.75 4.75 0 00-1.72 1.125 4.75 4.75 0 00-1.125 1.72 8.55 8.55 0 00-.545 2.825C2.01 8.944 2 9.283 2 12c0 2.717.01 3.056.06 4.122a8.55 8.55 0 00.545 2.825 4.75 4.75 0 001.125 1.72 4.75 4.75 0 001.72 1.125 8.55 8.55 0 002.825.545c1.066.05 1.405.06 4.122.06 2.717 0 3.056-.01 4.122-.06a8.55 8.55 0 002.825-.545 4.75 4.75 0 001.72-1.125 4.75 4.75 0 001.125-1.72 8.55 8.55 0 00.545-2.825c.05-1.066.06-1.405.06-4.122 0-2.717-.01-3.056-.06-4.122a8.55 8.55 0 00-.545-2.825 4.75 4.75 0 00-1.125-1.72 4.75 4.75 0 00-1.72-1.125 8.55 8.55 0 00-2.825-.545C15.056 2.01 14.717 2 12 2zm0 2.16c2.652 0 2.966.01 4.013.057a6.33 6.33 0 012.12.394 2.59 2.59 0 011.44 1.44 6.33 6.33 0 01.394 2.12c.047 1.047.057 1.361.057 4.013s-.01 2.966-.057 4.013a6.33 6.33 0 01-.394 2.12 2.59 2.59 0 01-1.44 1.44 6.33 6.33 0 01-2.12.394c-1.047.047-1.361.057-4.013.057s-2.966-.01-4.013-.057a6.33 6.33 0 01-2.12-.394 2.59 2.59 0 01-1.44-1.44 6.33 6.33 0 01-.394-2.12C4.01 14.966 4 14.652 4 12s.01-2.966.057-4.013a6.33 6.33 0 01.394-2.12 2.59 2.59 0 011.44-1.44 6.33 6.33 0 012.12-.394C9.034 4.17 9.348 4.16 12 4.16zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2.84a2.16 2.16 0 100 4.32 2.16 2.16 0 000-4.32zm6.27-2.65a1.18 1.18 0 100 2.36 1.18 1.18 0 000-2.36z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-white">@stepcleantaubate</span>
+            </a>
+
+            <a href="https://wa.me/5512988881170" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-[#00d2ff]/20 border border-white/5 transition-all">
+                <span class="material-symbols-outlined text-[#00d2ff]">call</span>
+                <span class="text-white">(12) 98888-1170</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<main class="relative min-h-screen" id="inicio">
+    <div class="absolute inset-0 w-full h-full -z-10" style="display:block;">
+    <canvas id="shader-canvas-ANIMATION_4" style="display:block;width:100%;height:100%"></canvas>
+    <script>
+    (function() {
+      const canvas = document.getElementById('shader-canvas-ANIMATION_4');
+      function syncSize() {
+        const w = canvas.clientWidth  || 1280;
+        const h = canvas.clientHeight || 720;
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width  = w;
+          canvas.height = h;
+        }
+      }
+      if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(syncSize).observe(canvas);
+      }
+      syncSize();
+
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return;
+      const vs = `attribute vec2 a_position;
+    varying vec2 v_texCoord;
+    void main() {
+      v_texCoord = a_position * 0.5 + 0.5;
+      gl_Position = vec4(a_position, 0.0, 1.0);
+    }`;
+      const fs = `precision highp float;
+    varying vec2 v_texCoord;
+    uniform float u_time;
+    uniform vec2 u_resolution;
+    uniform vec2 u_mouse;
+
+    vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+    float snoise(vec2 v){
+      const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+               -0.577350269189626, 0.024390243902439);
+      vec2 i  = floor(v + dot(v, C.yy) );
+      vec2 x0 = v -   i + dot(i, C.xx);
+      vec2 i1;
+      i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+      vec4 x12 = x0.xyxy + C.xxzz;
+      x12.xy -= i1;
+      i = mod(i, 289.0);
+      vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+      + i.x + vec3(0.0, i1.x, 1.0 ));
+      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+        dot(x12.zw,x12.zw)), 0.0);
+      m = m*m ;
+      m = m*m ;
+      vec3 x = 2.0 * fract(p * C.www) - 1.0;
+      vec3 h = abs(x) - 0.5;
+      vec3 ox = floor(x + 0.5);
+      vec3 a0 = x - ox;
+      m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+      vec3 g;
+      g.x  = a0.x  * x0.x  + h.x  * x0.y;
+      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+      return 130.0 * dot(m, g);
+    }
+
+    void main() {
+        vec2 uv = v_texCoord;
+        vec3 color1 = vec3(0.0, 0.1, 0.3); 
+        vec3 color2 = vec3(0.0, 0.4, 0.7); 
+        vec3 color3 = vec3(0.8, 0.95, 1.0); 
+        
+        float noise1 = snoise(uv * 3.0 + u_time * 0.2);
+        float noise2 = snoise(uv * 6.0 - u_time * 0.3);
+        
+        float water = smoothstep(-1.0, 1.0, noise1 + noise2 * 0.5);
+        vec3 finalColor = mix(color1, color2, water);
+        
+        float highlight = smoothstep(0.4, 0.6, snoise(uv * 2.0 + u_time * 0.1));
+        finalColor = mix(finalColor, color3, highlight * 0.15);
+        
+        finalColor *= (1.0 - uv.y * 0.4);
+        gl_FragColor = vec4(finalColor, 1.0);
+    }`;
+
+      function cs(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const pos = gl.getAttribLocation(prog, 'a_position');
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      const uRes = gl.getUniformLocation(prog, 'u_resolution');
+      const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+      let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+      window.addEventListener('mousemove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width && rect.height) {
+          const nx = (event.clientX - rect.left) / rect.width;
+          const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+          mouse.x = nx * canvas.width;
+          mouse.y = ny * canvas.height;
+        }
+      });
+
+      function render(t) {
+        if (typeof ResizeObserver === 'undefined') syncSize();
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        if (uTime) gl.uniform1f(uTime, t * 0.001);
+        if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+        if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      render(0);
+    })();
+    </script>
+    </div>
+
+    <section class="h-screen w-full relative flex items-center justify-center overflow-hidden pt-32 md:pt-40">
+        <div class="relative w-full max-w-3xl aspect-square flex items-center justify-center">
+            
+            <div class="absolute inset-0 bg-primary/10 puddle-accent filter blur-3xl opacity-30 animate-pulse"></div>
+            
+            <div id="threejs-container-ANIMATION_5" class="w-full h-full relative z-10" style="display:block;">
+            <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_5');
+  if (!container) return; 
+
+  const width = container.clientWidth || window.innerWidth;
+  const height = container.clientHeight || window.innerHeight;
+
+  const scene = new THREE.Scene();
+  
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(width, height);
+  container.appendChild(renderer.domElement);
+
+  const textureLoader = new THREE.TextureLoader();
+  const textureLimpa = textureLoader.load('./assets/nike_limpo.png');
+  const textureSuja = textureLoader.load('./assets/nike_sujo.png');
+
+  textureLimpa.minFilter = THREE.LinearFilter;
+  textureSuja.minFilter = THREE.LinearFilter;
+
+  const vertexShader = `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `;
+
+  const fragmentShader = `
+    uniform sampler2D mapLimpo;
+    uniform sampler2D mapSujo;
+    uniform float transition;
+    varying vec2 vUv;
+    
+    void main() {
+      vec4 rgbaLimpo = texture2D(mapLimpo, vUv);
+      vec4 rgbaSujo = texture2D(mapSujo, vUv);
+      
+      vec4 finalColor = mix(rgbaSujo, rgbaLimpo, transition);
+      
+      if (finalColor.a < 0.05) discard;
+      
+      gl_FragColor = finalColor;
+    }
+  `;
+
+  const materialCustom = new THREE.ShaderMaterial({
+    uniforms: {
+      mapLimpo: { value: textureLimpa },
+      mapSujo: { value: textureSuja },
+      transition: { value: 0.0 }
+    },
+    vertexShader: vertexShader,
+    fragmentShader: fragmentShader,
+    transparent: true,
+    depthTest: true
+  });
+
+  const geometry = new THREE.PlaneGeometry(3.8, 3.8); 
+  const meshTenis = new THREE.Mesh(geometry, materialCustom);
+  scene.add(meshTenis);
+
+  camera.position.set(0, 0, 5);
+
+  let clock = new THREE.Clock();
+
+  function animate() {
+      requestAnimationFrame(animate);
+      
+      const elapsedTime = clock.getElapsedTime();
+
+      meshTenis.position.y = Math.sin(elapsedTime * 1.5) * 0.12;
+      meshTenis.rotation.z = Math.sin(elapsedTime * 0.8) * 0.03;
+      meshTenis.rotation.y = Math.cos(elapsedTime * 1.0) * 0.08;
+
+      let wave = (Math.sin(elapsedTime * 0.8) + 1.0) / 2.0;
+      let smoothTransition = THREE.MathUtils.smoothstep(wave, 0.2, 0.8);
+      
+      materialCustom.uniforms.transition.value = smoothTransition;
+
+      renderer.render(scene, camera);
+  }
+
+  window.addEventListener('resize', () => {
+      const w = container.clientWidth || window.innerWidth;
+      const h = container.clientHeight || window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+  });
+
+  animate();
+})();
+</script>
+            </div>
+
+            <div class="absolute top-1/4 left-4 md:left-0 glass-effect p-4 rounded-xl flex items-center gap-3 animate-bounce shadow-xl" style="animation-duration: 3s">
+                <span class="material-symbols-outlined text-[#0040a1]" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+                <span class="text-label-bold font-label-bold text-white text-[14px] leading-[20px]">LIMPEZA PROFUNDA</span>
+            </div>
+            <div class="absolute bottom-1/4 right-4 md:right-0 glass-effect p-4 rounded-xl flex items-center gap-3 animate-bounce shadow-xl" style="animation-duration: 4s">
+                <span class="material-symbols-outlined text-[#0056d2]" style="font-variation-settings: 'FILL' 1;">clean_hands</span>
+                <span class="text-label-bold font-label-bold text-white ">CUIDADO PROFISSIONAL</span>
+            </div>
+        </div>
+    </section>
+
+<section id="comofunciona" class="min-h-screen w-full relative flex items-center justify-center px-margin-mobile md:px-margin-desktop py-20 text-center">
+    <div class="max-w-2xl mx-auto space-y-6 animate-fade-in relative z-10">
+        <h1 class="font-display-lg text-display-lg md:text-[64px] leading-tight text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+            Seu <span class="text-[#ff6b35] italic">Tênis</span> é coletado na sua academia
+        </h1>
+        <p class="font-body-md text-body-md text-white max-w-lg mx-auto drop-shadow-[0_1px_5px_rgba(0,0,0,0.8)] font-medium">
+            Experimente a tranquilidade e segurança de deixar o seu tênis na academia. Ele será lacrado em embalagem segura, buscaremos seu tênis, faremos a limpeza profunda com todo o cuidado para manter a integridade do seu tênis. Receba em 2 dias úteis seu tênis renovado, parecendo novo.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+         <a class="bg-transparent border border-white/20 text-white/90 hover:text-[#39ff14] hover:border-[#39ff14] hover:bg-[#39ff14]/5 px-10 py-4 rounded-full font-headline-lg flex items-center gap-2 group hover:shadow-[0_0_25px_rgba(57,255,20,0.6)] transform hover:-translate-y-0.5 transition-all duration-300" href="https://wa.me/5512988881170" target="_blank">
+        Agende a coleta
+        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+         </a>
+
+    <button id="openModalBtn" class="bg-[#ff6b35] border border-[#ff6b35] text-white font-label-bold px-10 py-4 rounded-full hover:bg-[#ff6b35]/5 hover:text-[#ff6b35] hover:shadow-[0_0_25px_rgba(255,107,53,0.6)] transform hover:-translate-y-0.5 transition-all duration-300">
+        Veja os resultados
+    </button>
+        </div>
+    </div>
+</section>
+
+<div id="photoModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="relative w-full max-w-2xl bg-zinc-900 border border-white/10 rounded-2xl p-4 flex flex-col items-center">
+        <button id="closeModalBtn" class="absolute top-3 right-4 text-white/70 hover:text-white text-3xl font-bold z-10 transition-colors">×</button>
+        <div id="modal-media" class="w-full h-[60vh] flex items-center justify-center overflow-hidden rounded-xl bg-zinc-950 mt-6"></div>
+        <button id="prevBtn" class="absolute left-6 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white text-2xl w-12 h-12 rounded-full flex items-center justify-center transition-all border border-white/10 select-none">❮</button>
+        <button id="nextBtn" class="absolute right-6 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white text-2xl w-12 h-12 rounded-full flex items-center justify-center transition-all border border-white/10 select-none">❯</button>
+        <div id="imageCounter" class="text-white/60 text-sm font-medium mt-3"></div>
+    </div>
+</div>
+
+<script>
+    const midiasTenis = [
+        { src: "./assets/insta1.jpg", type: "foto" },
+        { src: "./assets/insta2.mp4", type: "video" }, 
+        { src: "./assets/insta3.mp4", type: "video" }
+    ];
+
+    let indexAtual = 0;
+
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const photoModal = document.getElementById('photoModal');
+    const modalMediaContainer = document.getElementById('modal-media');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const imageCounter = document.getElementById('imageCounter');
+
+    function atualizarMidia() {
+        const midiaAtual = midiasTenis[indexAtual];
+        modalMediaContainer.innerHTML = "";
+
+        if (midiaAtual.type === "video") {
+            const videoElement = document.createElement("video");
+            videoElement.src = midiaAtual.src;
+            videoElement.controls = true; 
+            videoElement.autoplay = true; 
+            videoElement.className = "max-w-full max-h-full rounded-lg";
+            modalMediaContainer.appendChild(videoElement);
+        } else {
+            const imgElement = document.createElement("img");
+            imgElement.src = midiaAtual.src;
+            imgElement.alt = "Tênis Limpo";
+            imgElement.className = "max-w-full max-h-full object-contain";
+            modalMediaContainer.appendChild(imgElement);
+        }
+        imageCounter.innerText = `${indexAtual + 1} / ${midiasTenis.length}`;
+    }
+
+    openModalBtn.addEventListener('click', () => {
+        indexAtual = 0; 
+        atualizarMidia();
+        photoModal.classList.remove('hidden');
+        photoModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modalMediaContainer.innerHTML = "";
+        photoModal.classList.remove('flex');
+        photoModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    });
+
+    nextBtn.addEventListener('click', () => {
+        indexAtual++;
+        if (indexAtual >= midiasTenis.length) indexAtual = 0;
+        atualizarMidia();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        indexAtual--;
+        if (indexAtual < 0) indexAtual = midiasTenis.length - 1;
+        atualizarMidia();
+    });
+
+    photoModal.addEventListener('click', (e) => {
+        if (e.target === photoModal) {
+            closeModalBtn.click();
+        }
+    });
+</script>
+
+<section class="py-20 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+        
+        <div class="md:col-span-8 bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl group overflow-hidden relative min-h-[440px] md:min-h-[400px] flex flex-col justify-end shadow-2xl transition-all duration-500 hover:border-[#00d2ff]/40 hover:shadow-[0_0_35px_rgba(0,210,255,0.15)]">
+            <div class="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-[#0056d2]/20 to-[#00d2ff]/0 puddle-accent -mr-16 -mt-16 group-hover:scale-125 group-hover:from-[#00d2ff]/30 transition-all duration-700 blur-xl"></div>
+            
+            <div class="relative z-10 space-y-3 pr-0 md:pr-48">
+                <span class="inline-block px-4 py-1 rounded-full bg-[#ff6b35]/15 text-[#ff6b35] font-bold text-[11px] uppercase tracking-widest border border-[#ff6b35]/30">
+                    Tecnologia Exclusiva
+                </span>
+                <h2 class="font-headline-lg text-3xl md:text-4xl text-white font-extrabold tracking-tight">
+                    Limpeza <span class="text-[#00d2ff] drop-shadow-[0_0_15px_rgba(0,210,255,0.4)]">Molecular</span> Profunda
+                </h2>
+                <p class="text-slate-300 max-w-md text-base leading-relaxed">
+                    Nossa fórmula exclusiva penetra profundamente na estrutura das fibers, desfazendo a sujeira a nível microscópico sem agredir o material.
+                </p>
+            </div>
+            
+            <img alt="Texture cleaning" class="relative mx-auto mt-6 md:mt-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:right-6 w-44 h-44 md:w-48 md:h-48 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] opacity-70 group-hover:opacity-100 group-hover:scale-105 group-hover:rotate-3 transition-all duration-700 ease-out z-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABil4OnQY2A0T1yedEG_DFmSwfLVx3CenFwJwELXwgyZe9AAebKz9l8Mjc_JhIuzgCk_V13K6Q5omHM4kkFzHOYzJl1NYAD0Ze-FYyojL0fygwAhVZoAcGX6jH8vlvJUIhMMeQTrMw9AMMRQQBm16NYzuRve9XM8OSugqfePt3CvwBcmI9N-SUFw_OYZBd_Gt3jGcT239z0CUh6hIcmvxRdACHrxZzDy1uRnx6YIgk0TZm2lawni7gmxoaMGnidDb8w5QjBuGcHTNC"/>
+        </div>
+
+        <div class="md:col-span-4 bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl flex flex-col justify-between text-white overflow-hidden relative shadow-2xl group transition-all duration-500 hover:border-[#0056d2]/50 hover:shadow-[0_0_35px_rgba(0,86,210,0.2)]">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#0056d2]/10 to-transparent puddle-accent -mr-16 -mt-16 group-hover:scale-125 group-hover:from-[#0056d2]/30 transition-all duration-700 blur-xl"></div>
+            
+            <div class="relative z-10 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-headline-lg text-2xl md:text-3xl text-white font-extrabold tracking-wide">Restauração</h3>
+                    <span class="material-symbols-outlined text-[#00d2ff] text-2xl drop-shadow-[0_0_8px_rgba(0,210,255,0.4)]">brush</span>
+                </div>
+                
+                <div>
+                    <p class="font-body-sm text-sm md:text-base text-slate-300 leading-relaxed max-w-[90%]">
+                        Oferecemos serviços de pequenos reparos como pintura de arranhões, colagem, troca de solado e manutenções estruturais.
+                    </p>
+                    <p class="font-body-sm text-sm md:text-base text-[#00d2ff] font-medium leading-relaxed mt-3 max-w-[90%] drop-shadow-[0_0_10px_rgba(0,210,255,0.2)]">
+                        Tudo o que seu sneaker precisa para voltar às pistas.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-8 relative z-10">
+                <div class="flex -space-x-3 mb-4 group/avatars">
+                    <div class="w-10 h-10 rounded-full border-2 border-zinc-800 overflow-hidden bg-surface transition-transform duration-300 hover:scale-110 hover:z-20">
+                        <img alt="User 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOevel_NYJUPQyMHzUbSxsGzeaparLIvjf0pz5BvjTtOI7U9cOv3l_bAR9eoIVowrs1UOSDh8RWAIJ3Cz4aHYbTx-hrCS15yKkuyoZyntQKKEaSYzEqYE1X7mNGFcY3MtQmUmuM7d-O81iZNonNlW9mIVgmdv4w6aAWGhlCiqCOqfV9aw7FNYnMrwklTCx71OqP3EJwG6Ad6SDatqTCI0OtMHs5IdVdY2K8yQhGfAJOHGU60JU_nwjN7OqRb-bp52nXVt5vE7-4NPi" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="w-10 h-10 rounded-full border-2 border-zinc-800 overflow-hidden bg-surface transition-transform duration-300 hover:scale-110 hover:z-20">
+                        <img alt="User 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDossarKJUadsXndRBveb5nnQ3UOlA_7zgHbaqZYqt1jQNptbFL07KISOqcuu69YxVKxnDIq7MhviYaalNLfHf2Fr1Sphkqn8U1OhXTLfjKtX8C1j3YWuH5J8Ab1rKeHHdmZHpmHaPiG4gF_YvN977_UtxClRTd61gdjLvpt3nR6FZIfjSzHgTny2Ghs1G5lKX-Xpbyk6QfG3hGwLqq1gOow3eCtuhq0Bp8e2hy5BxWAlp5BzU1qtKXL1rZ7kHbBCPHe9lH0nVQAY1w" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="w-10 h-10 rounded-full border-2 border-zinc-800 flex items-center justify-center bg-[#0056d2] text-white font-bold text-xs shadow-lg">
+                        +5k
+                    </div>
+                </div>
+                <p class="font-label-bold text-[10px] tracking-widest text-[#00d2ff] font-bold uppercase">Trusted by Collectors</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-16 bg-zinc-900/30 backdrop-blur-xl border border-white/5 p-8 rounded-3xl shadow-2xl">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div class="space-y-1 min-w-[220px]">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-[#00d2ff] drop-shadow-[0_0_8px_rgba(0,210,255,0.3)]">Expertise</span>
+                <h3 class="font-headline-lg text-2xl text-white font-extrabold tracking-wide">Marcas Especialistas</h3>
+            </div>
+            <div class="flex-1 w-full">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="flex items-center justify-center py-3 px-4 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#00d2ff]/30 hover:bg-[#00d2ff]/5 transition-all duration-300 group cursor-default"><span class="text-sm font-bold text-slate-300 group-hover:text-white tracking-wide transition-colors">Nike</span></div>
+                    <div class="flex items-center justify-center py-3 px-4 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#00d2ff]/30 hover:bg-[#00d2ff]/5 transition-all duration-300 group cursor-default"><span class="text-sm font-bold text-slate-300 group-hover:text-white tracking-wide transition-colors">Adidas</span></div>
+                    <div class="flex items-center justify-center py-3 px-4 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#00d2ff]/30 hover:bg-[#00d2ff]/5 transition-all duration-300 group cursor-default"><span class="text-sm font-bold text-slate-300 group-hover:text-white tracking-wide transition-colors">Asus</span></div>
+                    <div class="flex items-center justify-center py-3 px-4 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#00d2ff]/30 hover:bg-[#00d2ff]/5 transition-all duration-300 group cursor-default"><span class="text-sm font-bold text-slate-300 group-hover:text-white tracking-wide transition-colors">Puma</span></div>
+                    <div class="flex items-center justify-center py-3 px-4 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#00d2ff]/30 hover:bg-[#00d2ff]/5 transition-all duration-300 group cursor-default"><span class="text-sm font-bold text-slate-300 group-hover:text-white tracking-wide transition-colors">Asics</span></div>
+                    <div class="flex items-center justify-center py-3 px-4 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#00d2ff]/30 hover:bg-[#00d2ff]/5 transition-all duration-300 group cursor-default"><span class="text-sm font-bold text-slate-300 group-hover:text-white tracking-wide transition-colors">Mizuno</span></div>
+                    <div class="flex items-center justify-center py-3 px-4 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#00d2ff]/30 hover:bg-[#00d2ff]/5 transition-all duration-300 group cursor-default"><span class="text-sm font-bold text-slate-300 group-hover:text-white tracking-wide transition-colors">Olympikus</span></div>
+                    <div class="flex items-center justify-center py-3 px-4 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#00d2ff]/30 hover:bg-[#00d2ff]/5 transition-all duration-300 group cursor-default"><span class="text-sm font-bold text-slate-300 group-hover:text-white tracking-wide transition-colors">Vans</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="w-full relative overflow-hidden border-t border-white/10 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-gutter px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto relative z-10">
+        
+        <div class="space-y-3">
+            <div class="font-headline-lg text-2xl text-white font-extrabold tracking-tight">
+                Step<span class="text-[#00d2ff]">Clean</span>
+            </div>
+            <div class="space-y-1">
+                <p class="font-body-sm text-medium text-slate-300/80">Limpeza profunda no seu tênis.</p>
+                <p class="font-body-sm text-sm text-slate-400/50">© 2026 StepClean. Todos os direitos reservados.</p>
+            </div>
+        </div>
+        
+        <div>
+            <h4 class="text-medium font-bold text-[#00d2ff] uppercase mb-4 tracking-widest drop-shadow-[0_0_8px_rgba(0,210,255,0.3)]">
+                Navegação
+            </h4>
+            <ul class="space-y-2.5">
+                <li><a class="text-md text-slate-300 hover:text-white transition-colors duration-200" href="#inicio">Início</a></li>
+                <li><a class="text-md text-slate-300 hover:text-white transition-colors duration-200" href="#comofunciona">Como funciona</a></li>
+            </ul>
+        </div>
+        
+        <div>
+    <h4 class="text-md font-bold text-[#00d2ff] uppercase mb-4 tracking-widest drop-shadow-[0_0_8px_rgba(0,210,255,0.3)]">
+        CONTATO
+    </h4>
+    <ul class="space-y-3 text-md text-slate-300">
+        <li>
+            <a href="mailto:contato@stepclean.com" class="flex items-center gap-2 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-sm text-slate-400">mail</span>
+                <span>contato@stepclean.com</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://instagram.com/stepcleantaubate" target="_blank" class="flex items-center gap-2 hover:text-white transition-colors">
+                <svg class="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c-2.717 0-3.056.01-4.122.06a8.55 8.55 0 00-2.825.545 4.75 4.75 0 00-1.72 1.125 4.75 4.75 0 00-1.125 1.72 8.55 8.55 0 00-.545 2.825C2.01 8.944 2 9.283 2 12c0 2.717.01 3.056.06 4.122a8.55 8.55 0 00.545 2.825 4.75 4.75 0 001.125 1.72 4.75 4.75 0 001.72 1.125 8.55 8.55 0 002.825.545c1.066.05 1.405.06 4.122.06 2.717 0 3.056-.01 4.122-.06a8.55 8.55 0 002.825-.545 4.75 4.75 0 001.72-1.125 4.75 4.75 0 001.125-1.72 8.55 8.55 0 00.545-2.825c.05-1.066.06-1.405.06-4.122 0-2.717-.01-3.056-.06-4.122a8.55 8.55 0 00-.545-2.825 4.75 4.75 0 00-1.125-1.72 4.75 4.75 0 00-1.72-1.125 8.55 8.55 0 00-2.825-.545C15.056 2.01 14.717 2 12 2zm0 2.16c2.652 0 2.966.01 4.013.057a6.33 6.33 0 012.12.394 2.59 2.59 0 011.44 1.44 6.33 6.33 0 01.394 2.12c.047 1.047.057 1.361.057 4.013s-.01 2.966-.057 4.013a6.33 6.33 0 01-.394 2.12 2.59 2.59 0 01-1.44 1.44 6.33 6.33 0 01-2.12.394c-1.047.047-1.361.057-4.013.057s-2.966-.01-4.013-.057a6.33 6.33 0 01-2.12-.394 2.59 2.59 0 01-1.44-1.44 6.33 6.33 0 01-.394-2.12C4.01 14.966 4 14.652 4 12s.01-2.966.057-4.013a6.33 6.33 0 01.394-2.12 2.59 2.59 0 011.44-1.44 6.33 6.33 0 012.12-.394C9.034 4.17 9.348 4.16 12 4.16zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2.84a2.16 2.16 0 100 4.32 2.16 2.16 0 000-4.32zm6.27-2.65a1.18 1.18 0 100 2.36 1.18 1.18 0 000-2.36z"></path></svg>
+                <span>@stepcleantaubate</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://wa.me/5512988881170" target="_blank" class="flex items-center gap-2 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-sm text-slate-400">call</span>
+                <span>(12) 98888-1170</span>
+            </a>
+        </li>
+    </ul>
+</div>
+</footer>
+
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const contactModal = document.getElementById('contactModal');
+        const photoModal = document.getElementById('photoModal');
+        const contactLink = document.querySelector('a[href="#contato"]');
+        const openModalBtn = document.getElementById('openModalBtn');
+
+        const toggleModal = (modal, show) => {
+            if (show) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        if (contactLink) {
+            contactLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleModal(contactModal, true);
+            });
+        }
+
+        if (openModalBtn) {
+            openModalBtn.addEventListener('click', () => toggleModal(photoModal, true));
+        }
+
+        document.getElementById('closeContactModal')?.addEventListener('click', () => toggleModal(contactModal, false));
+        document.getElementById('closeModalBtn')?.addEventListener('click', () => toggleModal(photoModal, false));
+    });
+</script>
+</body>
+</html>
