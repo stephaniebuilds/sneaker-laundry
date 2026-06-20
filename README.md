@@ -3,7 +3,7 @@
 Landing page premium desenvolvida para a **StepClean Taubaté**, focada na prestação de serviços de limpeza e restauração profissional de tênis. O projeto utiliza tecnologias de ponta para criar uma experiência visual imersiva e responsiva.
 
 ## 🔗 Link do Projeto
-🚀 [Acesse o site oficial aqui](https://stephaniebuilds.github.io/stepclean-taubate/)
+🚀 [Acesse o site oficial aqui](https://stephaniebuilds.github.io/sneaker-laundry)
 
 ## ✨ Funcionalidades Principais
 
